@@ -1,0 +1,23 @@
+#!/bin/bash
+sudo firewall-cmd --permanent --add-port=5044/tcp
+sudo firewall-cmd --reload
+sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+repofile=$(cat <<'EOF'
+[logstash-7.15.2]
+name=Elastic repository for 7.15.2 packages
+baseurl=https://artifacts.elastic.co/packages/7.15.2/yum
+gpgcheck=1
+gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
+enabled=1
+autorefresh=1
+type=rpm-md
+EOF
+)
+echo "$repofile" > /etc/yum.repos.d/logstash.repo
+
+sudo dnf install -y logstash
+sudo systemctl daemon-reload
+sudo systemctl restart firewalld
+sudo systemctl enable --now logstash.service
+sudo systemctl status logstash.service
+
