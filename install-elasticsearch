@@ -1,0 +1,4 @@
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-x86_64.rpm
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-x86_64.rpm.sha512
+sha512sum -c elasticsearch-7.15.2-x86_64.rpm.sha512
+sudo rpm -ivh elasticsearch-7.15.2-x86_64.rpm
