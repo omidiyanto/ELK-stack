@@ -1,0 +1,10 @@
+#!/bin/bash
+sudo firewall-cmd --permanent --add-port=5601/tcp
+sudo firewall-cmd --reload
+wget https://artifacts.elastic.co/downloads/kibana/kibana-7.15.2-x86_64.rpm
+sha512sum -c kibana-7.15.2-x86_64.rpm 
+sudo rpm -ivh kibana-7.15.2-x86_64.rpm
+sudo systemctl daemon-reload
+sudo systemctl enable --now kibana.service
+sudo systemctl restart firewalld
+sudo systemctl status kibana.service
