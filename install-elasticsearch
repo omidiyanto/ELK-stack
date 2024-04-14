@@ -1,4 +1,6 @@
 #!/bin/bash
+sudo firewall-cmd --permanent --add-port=9200/tcp
+sudo firewall-cmd --reload
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-x86_64.rpm
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.15.2-x86_64.rpm.sha512
 sha512sum -c elasticsearch-7.15.2-x86_64.rpm.sha512
@@ -6,9 +8,6 @@ sudo rpm -ivh elasticsearch-7.15.2-x86_64.rpm
 sudo systemctl daemon-reload
 sudo systemctl enable --now elasticsearch.service
 sudo systemctl status elasticsearch.service
-sudo firewall-cmd --permanent --add-port=9200/tcp
-sudo firewall-cmd --reload
-
 #configfile=$(cat <<'EOF'
 
 
