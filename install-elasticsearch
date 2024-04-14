@@ -21,4 +21,5 @@ EOF
 
 echo "$configfile" >> /etc/elasticsearch/elasticsearch.yml
 sudo systemctl restart elasticsearch.service
+sudo systemctl restart firewalld
 sudo systemctl status elasticsearch.service
