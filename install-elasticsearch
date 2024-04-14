@@ -7,12 +7,18 @@ sha512sum -c elasticsearch-7.15.2-x86_64.rpm.sha512
 sudo rpm -ivh elasticsearch-7.15.2-x86_64.rpm
 sudo systemctl daemon-reload
 sudo systemctl enable --now elasticsearch.service
+
+configfile=$(cat <<'EOF'
+# ---------------------------------- Network -----------------------------------
+network.host: 0.0.0.0
+http.port: 9200
+# --------------------------------- Discovery ----------------------------------
+discovery.seed_hosts: ["127.0.0.1", "[::1]"]
+# Enable security features
+xpack.security.enabled: false
+EOF
+)
+
+echo "$configfile" >> /etc/elasticsearch/elasticsearch.yml
+sudo systemctl restart elasticsearch.service
 sudo systemctl status elasticsearch.service
-#configfile=$(cat <<'EOF'
-
-
-
-#EOF
-#)
-
-#echo "$configfile" > /etc/
