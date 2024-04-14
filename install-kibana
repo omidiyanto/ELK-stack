@@ -7,4 +7,6 @@ sudo rpm -ivh kibana-7.15.2-x86_64.rpm
 sudo systemctl daemon-reload
 sudo systemctl enable --now kibana.service
 sudo systemctl restart firewalld
+sudo echo 'server.host: "0.0.0.0"' >> /etc/kibana/kibana.yml
+sudo systemctl restart kibana.service
 sudo systemctl status kibana.service
