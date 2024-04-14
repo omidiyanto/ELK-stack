@@ -3,9 +3,9 @@ sudo firewall-cmd --permanent --add-port=5044/tcp
 sudo firewall-cmd --reload
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 repofile=$(cat <<'EOF'
-[logstash-7.15.2]
-name=Elastic repository for 7.15.2 packages
-baseurl=https://artifacts.elastic.co/packages/7.15.2/yum
+[logstash-7.x]
+name=Elastic repository for 7.x packages
+baseurl=https://artifacts.elastic.co/packages/7.x/yum
 gpgcheck=1
 gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch
 enabled=1
